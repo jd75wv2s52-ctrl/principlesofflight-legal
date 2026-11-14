@@ -1,418 +1,49 @@
-<title>AeroLearn Support</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Principles of Flight - Principles of Flight</title>
 <style>
-/* Layout: single-column with sticky nav, two hash-routed sections */
-:root {
-  --bg:       #F8FAFC;
-  --surface:  #FFFFFF;
-  --border:   #E2E8F0;
-  --text:     #0F172A;
-  --muted:    #5B6B82;
-  --accent:   #2563EB;
-  --accent-bg:#EFF6FF;
-  --navy:     #0F2A4A;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:       #0B1220;
-    --surface:  #141E33;
-    --border:   #2A3A55;
-    --text:     #F1F5F9;
-    --muted:    #9AA8BD;
-    --accent:   #60A5FA;
-    --accent-bg:#1E3A8A;
-    --navy:     #0A1730;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg:       #0B1220;
-  --surface:  #141E33;
-  --border:   #2A3A55;
-  --text:     #F1F5F9;
-  --muted:    #9AA8BD;
-  --accent:   #60A5FA;
-  --accent-bg:#1E3A8A;
-  --navy:     #0A1730;
-  color-scheme: dark;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  background: var(--bg);
-  color: var(--text);
-}
-
-/* ── Header ── */
-.site-header {
-  background: var(--navy);
-  padding-block: 20px;
-  padding-left:  max(20px, env(safe-area-inset-left, 0px));
-  padding-right: max(20px, env(safe-area-inset-right, 0px));
-}
-.header-inner {
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.app-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, #2563EB, #60A5FA);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.app-icon svg { width: 26px; height: 26px; fill: #fff; }
-.app-name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.2;
-}
-.app-sub {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.65);
-  margin-top: 2px;
-}
-
-/* ── Nav tabs ── */
-.nav-bar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 10;
-  padding-left:  max(20px, env(safe-area-inset-left, 0px));
-  padding-right: max(20px, env(safe-area-inset-right, 0px));
-}
-.nav-inner {
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  gap: 0;
-}
-.nav-tab {
-  padding: 14px 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--muted);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
-  white-space: nowrap;
-}
-.nav-tab:hover { color: var(--text); }
-.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-/* ── Main content ── */
-.page-content {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 40px max(20px, env(safe-area-inset-left, 0px)) 64px;
-}
-
-section { display: none; }
-section.active { display: block; }
-
-/* ── Typography ── */
-h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 700;
-  color: var(--text);
-  text-wrap: balance;
-  margin-bottom: 8px;
-}
-.meta {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-bottom: 36px;
-}
-h2 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-top: 36px;
-  margin-bottom: 10px;
-  text-wrap: balance;
-}
-p { color: var(--muted); margin-bottom: 14px; }
-p:last-child { margin-bottom: 0; }
-ul {
-  color: var(--muted);
-  padding-left: 20px;
-  margin-bottom: 14px;
-}
-li { margin-bottom: 6px; }
-
-/* ── Info box ── */
-.info-box {
-  background: var(--accent-bg);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: 10px;
-  padding: 16px 20px;
-  margin-bottom: 36px;
-}
-.info-box p { color: var(--text); margin: 0; font-size: 0.95rem; }
-.info-box strong { color: var(--accent); }
-
-/* ── Contact card ── */
-.contact-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  margin-top: 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.contact-card h2 { margin: 0; }
-.contact-label { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-.contact-email {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--accent);
-  word-break: break-all;
-  user-select: all;
-}
-.copy-btn {
-  align-self: flex-start;
-  margin-top: 4px;
-  background: var(--accent-bg);
-  color: var(--accent);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  font-family: inherit;
-  transition: opacity 0.15s;
-}
-.copy-btn:hover { opacity: 0.8; }
-
-/* ── FAQ ── */
-.faq-item {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  background: var(--surface);
-}
-.faq-q {
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  padding: 16px 20px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
-.faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.faq-chevron {
-  flex-shrink: 0;
-  width: 18px; height: 18px;
-  color: var(--muted);
-  transition: transform 0.2s;
-}
-.faq-item.open .faq-chevron { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 20px 16px;
-}
-.faq-a p { margin: 0; font-size: 0.9rem; }
-.faq-item.open .faq-a { display: block; }
-
-/* ── Divider ── */
-hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+:root{--ink:#0d1b35;--muted:#5b6b85;--line:#d5dce8;--blue:#238bff;--navy:#16335f;--bg:#f3f7fd}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+header{background:var(--navy);color:#fff;padding:22px 20px}
+header .in,main,footer .in{max-width:760px;margin:0 auto}
+header a{color:#fff;text-decoration:none}
+header .app{font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+header h1{margin:4px 0 0;font-size:26px}
+nav{margin-top:12px;font-size:14px}
+nav a{margin-right:16px;opacity:.9;border-bottom:1px solid rgba(255,255,255,.35)}
+main{padding:24px 20px 40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:18px}
+h2{font-size:19px;margin:26px 0 6px}
+h2:first-child{margin-top:0}
+h3{font-size:16px;margin:18px 0 4px}
+p,li{font-size:16px}
+ul{padding-left:22px}
+a{color:#1667c9}
+.meta{color:var(--muted);font-size:14px;margin-bottom:14px}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:11px 20px;border-radius:24px;font-weight:600}
+footer{color:var(--muted);font-size:13px;padding:0 20px 36px}
 </style>
+</head>
+<body>
+<header><div class="in"><div class="app">Principles of Flight</div><h1>Principles of Flight</h1><nav><a href="index.html">Home</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="support.html">Support</a></nav></div></header>
+<main>
+<div class="card">
 
-<!-- Header -->
-<header class="site-header">
-  <div class="header-inner">
-    <div class="app-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>
-      </svg>
-    </div>
-    <div>
-      <div class="app-name">AeroLearn</div>
-      <div class="app-sub">Principles of Flight · by AceMath</div>
-    </div>
-  </div>
-</header>
+<h2>How aircraft fly, explained simply</h2>
+<p>Principles of Flight is an iPhone and iPad course on aerodynamics and flight: 84 short lessons across 14 sections, from the four forces and how a wing makes lift to high-speed flight, stability and aeroelasticity. Every section has clear, zoomable diagrams, real aircraft photos, quick checks and a self-test.</p>
+<p><a class="btn" href="support.html">Get support</a></p>
+<h2>Legal</h2>
+<ul>
+<li><a href="privacy.html">Privacy Policy</a></li>
+<li><a href="terms.html">Terms of Use</a></li>
+</ul>
 
-<!-- Nav tabs -->
-<nav class="nav-bar" aria-label="Site sections">
-  <div class="nav-inner">
-    <a href="#support" class="nav-tab" id="tab-support">Support</a>
-    <a href="#privacy" class="nav-tab" id="tab-privacy">Privacy Policy</a>
-  </div>
-</nav>
-
-<!-- Content -->
-<main class="page-content">
-
-  <!-- Support section -->
-  <section id="support">
-    <h1>Support &amp; Help</h1>
-    <p class="meta">AeroLearn · Principles of Flight</p>
-
-    <div class="info-box">
-      <p>Got a question or found something that doesn't look right? Email us and we'll get back to you, usually within <strong>one to two business days</strong>.</p>
-    </div>
-
-    <div class="contact-card">
-      <h2>Contact</h2>
-      <div class="contact-label">Support email</div>
-      <div class="contact-email" id="support-email">support.acemath@proton.me</div>
-      <button class="copy-btn" id="copy-btn" onclick="copyEmail()">Copy email address</button>
-    </div>
-
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq-item" id="faq1">
-      <button class="faq-q" onclick="toggleFaq('faq1')" aria-expanded="false">
-        My lesson progress has disappeared. What happened?
-        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a"><p>Progress is stored on your device. If you deleted and reinstalled the app, or restored your phone from a backup, progress may have been reset. Unfortunately there is no way to recover it, but each lesson is short and easy to work through again.</p></div>
-    </div>
-
-    <div class="faq-item" id="faq2">
-      <button class="faq-q" onclick="toggleFaq('faq2')" aria-expanded="false">
-        Can I use the app without an internet connection?
-        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a"><p>Yes. All 14 sections, lessons, diagrams, and quizzes are available fully offline once the app is installed. No account or internet connection is required.</p></div>
-    </div>
-
-    <div class="faq-item" id="faq3">
-      <button class="faq-q" onclick="toggleFaq('faq3')" aria-expanded="false">
-        How do I zoom in on the diagrams?
-        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a"><p>Use a pinch gesture on any diagram to zoom in up to 4× and drag to pan. Pinch back out to restore the original size.</p></div>
-    </div>
-
-    <div class="faq-item" id="faq4">
-      <button class="faq-q" onclick="toggleFaq('faq4')" aria-expanded="false">
-        What is covered in the app?
-        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a"><p>AeroLearn covers 14 sections — from the four fundamental forces of flight through wings, drag, propulsion, stability, control surfaces, take-off &amp; landing, and structural influences. Each section has six lessons, a self-test quiz, an interactive glossary, and a flight timeline.</p></div>
-    </div>
-
-    <div class="faq-item" id="faq5">
-      <button class="faq-q" onclick="toggleFaq('faq5')" aria-expanded="false">
-        I found an error in the content. How do I report it?
-        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="faq-a"><p>Please email us at <span style="color:var(--accent);font-weight:500;">support.acemath@proton.me</span> with the section name, lesson title, and a brief description of the error. We review all reports and issue corrections in app updates.</p></div>
-    </div>
-
-    <hr>
-    <p style="font-size:0.85rem;">AeroLearn is an independent educational app. It is not affiliated with any airline, aviation authority, or academic institution.</p>
-  </section>
-
-  <!-- Privacy Policy section -->
-  <section id="privacy">
-    <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: 13 November 2026</p>
-
-    <div class="info-box">
-      <p><strong>Short version:</strong> AeroLearn does not collect, store, or share any personal information. No account is required, and all data stays on your device.</p>
-    </div>
-
-    <h2>What information we collect</h2>
-    <p>AeroLearn does not collect any personal information. We do not ask for your name, email address, age, location, or any other identifying information.</p>
-    <p>The app stores your lesson progress (which lessons you have completed) locally on your device. This data never leaves your device and is not accessible to us.</p>
-
-    <h2>Analytics and tracking</h2>
-    <p>We do not use any analytics tools, advertising networks, crash-reporting services, or third-party tracking of any kind. We have no visibility into how you use the app.</p>
-
-    <h2>Third-party services</h2>
-    <p>AeroLearn does not integrate with any third-party services. There are no social login options, payment processors, or external APIs called at runtime.</p>
-
-    <h2>Data storage</h2>
-    <p>The only data stored by the app is your lesson completion progress, which is held in your device's local storage. You can clear this data at any time by deleting the app.</p>
-
-    <h2>Children's privacy</h2>
-    <p>AeroLearn does not knowingly collect any personal information from anyone, including children under 13. Because no data is collected at all, the app does not raise concerns under COPPA or similar laws.</p>
-
-    <h2>Changes to this policy</h2>
-    <p>If we update this policy, we will revise the date at the top of this page and release a new version of the app. Continued use of the app after a policy update constitutes acceptance of the revised policy.</p>
-
-    <h2>Contact</h2>
-    <p>Questions about this policy? Email us:</p>
-    <div class="contact-card" style="margin-top:16px;">
-      <div class="contact-label">Privacy enquiries</div>
-      <div class="contact-email">support.acemath@proton.me</div>
-      <button class="copy-btn" onclick="copyEmail()">Copy email address</button>
-    </div>
-  </section>
-
+</div>
 </main>
-
-<script>
-  // ── Hash routing ──
-  function showSection(hash) {
-    const target = hash.replace('#', '') || 'support';
-    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === target));
-    document.querySelectorAll('.nav-tab').forEach(t => {
-      t.classList.toggle('active', t.getAttribute('href') === '#' + target);
-    });
-  }
-  window.addEventListener('hashchange', () => showSection(location.hash));
-  showSection(location.hash || '#support');
-
-  // ── FAQ accordion ──
-  function toggleFaq(id) {
-    const item = document.getElementById(id);
-    const btn = item.querySelector('.faq-q');
-    const isOpen = item.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen);
-  }
-
-  // ── Copy email ──
-  function copyEmail() {
-    const email = 'support.acemath@proton.me';
-    const btn = event.currentTarget;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(email).then(() => {
-        btn.textContent = 'Copied!';
-        setTimeout(() => btn.textContent = 'Copy email address', 2000);
-      }).catch(() => selectEmail());
-    } else {
-      selectEmail();
-    }
-  }
-  function selectEmail() {
-    const el = document.getElementById('support-email');
-    if (el) {
-      const range = document.createRange();
-      range.selectNodeContents(el);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
-    }
-  }
-</script>
+<footer><div class="in">&copy; 2026 Principles of Flight. Photo credits and licences are shown with each photo in the app.</div></footer>
+</body>
+</html>
